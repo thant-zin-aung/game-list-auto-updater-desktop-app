@@ -1,5 +1,6 @@
 package com.panda.gamelistautoupdater;
 
+import com.panda.gamelistautoupdater.exceptions.ChromeRelatedException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,5 +20,12 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
+        try {
+            TestMain.main(args);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ChromeRelatedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
