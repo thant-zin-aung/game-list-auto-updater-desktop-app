@@ -1,26 +1,23 @@
 package com.panda.gamelistautoupdater;
 
-import com.panda.gamelistautoupdater.domains.automations.IggGameAutomateBrowser;
-import com.panda.gamelistautoupdater.domains.scraping.IggGameWebScraper;
-import com.panda.gamelistautoupdater.exceptions.ChromeRelatedException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main {
-    public static void main(String[] args) throws IOException, ChromeRelatedException {
-//        System.out.println(Initializer.initialize() ? "Ready to use..." : "Failed to use");
-//        IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(2);
-//        iggGameWebScraper.start();
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-        IggGameAutomateBrowser iggGameAutomateBrowser = new IggGameAutomateBrowser();
-        iggGameAutomateBrowser.checkGameAlreadyExist("little nightmaer");
-
-//        FacebookHandler.extendPageAccessToken();
-
-//        String shortLiveAccessToken = "EAAIWWKAz7kgBOzajvUsvfnNcTLdoIulVNQWZADbkpeZAR5wnZAr17c3mdCY2ahA4MFZCxJoZCCnNRwC0LtcfYFZB5e0lUdS84XjjwetWADKLF6hgZBvpiYFcHGW9IvJsuGaTKFOTZCrZCbXESkUqa3eBcGeXUuLVrsD1PMhzDabwsxgBm8DWtRbQQb03fXFdVVGDEE8Rhkdzc9RVGNLAZCxvbjYVMKFgZDZD";
-//        FacebookHandler.post("EAAIWWKAz7kgBOZCp8mnp51hYI7FkRtCe3g4GovPe9irNFhP1TTPa39TfyLEz2Va7QzJKMXoR59XN4YIOQm8yLYZCHQhTgrzxm6SxZAuiRxHGlkNVpltbbttzTZC6ZCljEG9g4j529EJGbdyqZBqdmlyZC3SLeZCfZBrgMsKBuUZBwXQlizA0FUHGcaZAzTZAN5P3sJ0ZD");
-//        FacebookHandler.extendPageAccessToken(null, null, null, shortLiveAccessToken);
-//        System.out.println("Is token valid: "+FacebookHandler.tokenExpiryChecker());
-
+    public static void main(String[] args) {
+        launch();
     }
 }
