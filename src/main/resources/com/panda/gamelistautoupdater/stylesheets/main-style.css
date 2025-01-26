@@ -1,4 +1,20 @@
+@font-face {
+    src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Italic.ttf');
+}
+
+@font-face {
+    src: url('../fonts/Roboto-BoldItalic.ttf');
+}
 .root {
+    -fx-font-family: 'Roboto';
     -fx-background-color: #121411;
 }
 .minimize-button:hover,
@@ -34,4 +50,16 @@
 .location-input-field {
     -fx-font-weight: 600;
     -fx-padding: 0 0 0 15px;
+}
+.progress-indication-wrapper {
+    -fx-border-style: solid;
+    -fx-border-color: #4d4d4d;
+    -fx-border-width: 0 1px 0 0;
+}
+.update-button {
+    -fx-background-color: #00ff73;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 30px;
 }

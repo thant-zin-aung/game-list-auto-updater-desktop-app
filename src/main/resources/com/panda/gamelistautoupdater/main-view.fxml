@@ -75,7 +75,7 @@
       </HBox>
       <Label layoutX="27.0" layoutY="59.0" prefHeight="35.0" prefWidth="320.0" text="Update Game List To Cloud" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="21.0" />
+            <Font name="Roboto Regular" size="21.0" />
          </font>
       </Label>
       <HBox layoutX="27.0" layoutY="125.0" prefHeight="43.0" prefWidth="646.0" spacing="20.0">
@@ -131,7 +131,7 @@
                   </Text>
                   <Text fill="#9c9c9c" layoutX="10.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(Choose the location path of youtube credentials json file)">
                      <font>
-                        <Font size="13.0" />
+                        <Font name="Roboto Regular" size="13.0" />
                      </font>
                   </Text>
                </children>
@@ -147,5 +147,9 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
          </padding>
       </VBox>
+      <Text fill="WHITE" layoutX="27.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:" />
+      <VBox layoutX="27.0" layoutY="374.0" prefHeight="177.0" prefWidth="332.0" styleClass="progress-indication-wrapper" />
+      <Button layoutX="530.0" layoutY="340.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" styleClass="update-button" text="Update" />
+      <Text fill="WHITE" layoutX="371.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:" />
    </children>
 </AnchorPane>
