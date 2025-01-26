@@ -63,3 +63,22 @@
     -fx-font-size: 15px;
     -fx-background-radius: 30px;
 }
+
+
+.progress {
+    -fx-progress-color: #00ad89;
+    visibility: hidden;
+}
+.complete-checkbox {
+
+}
+.complete-checkbox .box {
+    -fx-background-radius: 50%;
+    -fx-background-color: #00ad89;
+    -fx-border-color: transparent;
+    -fx-pref-width: 13px;
+    -fx-pref-height: 13px;
+}
+.complete-checkbox:selected .mark {
+    -fx-background-color: white;
+}
