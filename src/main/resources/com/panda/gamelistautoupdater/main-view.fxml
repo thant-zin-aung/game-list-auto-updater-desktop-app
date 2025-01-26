@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -147,14 +148,139 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
          </padding>
       </VBox>
-      <Text fill="WHITE" layoutX="27.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:" />
-      <VBox layoutX="27.0" layoutY="374.0" prefHeight="177.0" prefWidth="332.0" styleClass="progress-indication-wrapper" />
+      <Text fill="WHITE" layoutX="27.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Text>
+      <VBox layoutX="27.0" layoutY="380.0" prefHeight="177.0" prefWidth="299.0" styleClass="progress-indication-wrapper">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Title:" wrappingWidth="55.199981689453125">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Witcher 3" wrappingWidth="255.1999397277832">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" wrappingWidth="35.199981689453125">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting download links" wrappingWidth="255.1999397277832">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting Details: ------------------------" wrappingWidth="187.99991607666016">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="29.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting Links: --------------------------" wrappingWidth="187.99991607666016">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting Images: ------------------------" wrappingWidth="187.9999771118164">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="87.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="188.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting Youtube Trailer: ---------------" wrappingWidth="186.4000015258789">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Game to Cloud: ------------------" wrappingWidth="187.9999771118164">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="19.0" prefWidth="331.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
+                     <children>
+                        <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Posting Game to Facebook --------------" wrappingWidth="187.9999771118164">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" />
+               </children>
+            </HBox>
+         </children></VBox>
       <Button layoutX="530.0" layoutY="340.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" styleClass="update-button" text="Update" />
       <Text fill="WHITE" layoutX="370.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acknowledge">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Text>
-      <Text fill="#bcbcbc" layoutX="370.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This application is intended for personal use. The developers are not responsible for any data loss, misuse, or issues arising from the use of third-party APIs or cloud services. Please ensure you comply with the terms of service for all integrated platforms." wrappingWidth="320.0">
+      <Text fill="#bcbcbc" layoutX="370.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This application is intended for personal use. The developer is not responsible for any data loss, misuse, or issues arising from the use of third-party APIs or cloud services. Please ensure you comply with the terms of service for all integrated platforms." wrappingWidth="320.0">
          <font>
             <Font size="10.0" />
          </font>
@@ -196,7 +322,7 @@
                         <Font size="10.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thant Zin Aung" wrappingWidth="162.39990615844727">
+                  <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PANDA (Thant Zin Aung)" wrappingWidth="162.39990615844727">
                      <font>
                         <Font size="10.0" />
                      </font>
