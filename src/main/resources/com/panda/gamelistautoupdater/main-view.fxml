@@ -150,6 +150,60 @@
       <Text fill="WHITE" layoutX="27.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:" />
       <VBox layoutX="27.0" layoutY="374.0" prefHeight="177.0" prefWidth="332.0" styleClass="progress-indication-wrapper" />
       <Button layoutX="530.0" layoutY="340.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" styleClass="update-button" text="Update" />
-      <Text fill="WHITE" layoutX="371.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Indication:" />
+      <Text fill="WHITE" layoutX="370.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acknowledge">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Text>
+      <Text fill="#bcbcbc" layoutX="370.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This application is intended for personal use. The developers are not responsible for any data loss, misuse, or issues arising from the use of third-party APIs or cloud services. Please ensure you comply with the terms of service for all integrated platforms." wrappingWidth="320.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <VBox layoutX="370.0" layoutY="482.0" prefHeight="43.0" prefWidth="299.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+               <children>
+                  <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="App Name: " wrappingWidth="55.199981689453125">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game List Auto Updater" wrappingWidth="134.39990615844727">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+               <children>
+                  <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Version:" wrappingWidth="39.199981689453125">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1.0.0" wrappingWidth="134.39990615844727">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+               <children>
+                  <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Developed By:" wrappingWidth="66.39993286132812">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thant Zin Aung" wrappingWidth="162.39990615844727">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
