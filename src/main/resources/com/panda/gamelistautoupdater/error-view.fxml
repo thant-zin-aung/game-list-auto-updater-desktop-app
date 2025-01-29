@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="227.0" prefWidth="521.0" stylesheets="@stylesheets/error-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="522.0">
+         <styleClass>
+            <String fx:value="description-wrapper" />
+            <String fx:value="first-description-wrapper" />
+         </styleClass>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Error">
+               <font>
+                  <Font name="Roboto Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="486.0" styleClass="description-wrapper">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="AUTH001: Invalid username or password.AUTH002: Your session has expired. Please log in again.AUTH003: Access denied. You do not have the required permissions.AUTH004: Too many failed login attempts. Try again later.VAL001: Required field missing: {field_name}." wrappingWidth="483.8625183105469">
+               <font>
+                  <Font name="Roboto Regular" size="12.0" />
+               </font>
+            </Text>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="62.0" prefWidth="482.0" spacing="15.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Some errors need to identify yourself">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Text>
+            <Pane prefHeight="62.0" prefWidth="82.0" />
+            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="94.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nope">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="description-wrapper" />
+                  <String fx:value="button" />
+                  <String fx:value="nope-button" />
+               </styleClass>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="397.0" layoutY="39.0" prefHeight="33.0" prefWidth="94.0">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="OK">
+                     <font>
+                        <Font name="Roboto Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="description-wrapper" />
+                  <String fx:value="button" />
+               </styleClass>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

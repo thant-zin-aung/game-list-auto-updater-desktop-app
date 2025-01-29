@@ -1,0 +1,14 @@
+.root {
+    -fx-background-color: #212121;
+}
+.description-wrapper {
+    -fx-background-color: #e54f4f;
+}
+.first-description-wrapper {
+    -fx-border-color: #ffffff;
+    -fx-border-style: dashed;
+    -fx-border-width: 0 0 1px 0;
+}
+.nope-button {
+    -fx-background-color: grey;
+}
