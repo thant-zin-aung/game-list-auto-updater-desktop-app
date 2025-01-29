@@ -10,9 +10,6 @@ public class FBCredentialsController {
     @FXML
     private HBox closeButton;
 
-    public void initialize() {
-        UIUtility.showErrorDialog("- testing");
-    }
     @FXML
     public void clickOnCloseButton() {
         Stage stage = (Stage) closeButton.getScene().getWindow();

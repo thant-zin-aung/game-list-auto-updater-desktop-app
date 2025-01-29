@@ -28,6 +28,7 @@ public class MainController {
     @FXML
     public void clickOnUpdateButton() throws IOException {
         displayFbCredentialsView();
+        UIUtility.showErrorDialog("- controller testing");
     }
 
 
