@@ -12,3 +12,28 @@
 .nope-button {
     -fx-background-color: grey;
 }
+
+.text-area {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-border-color: #e54f4f;
+    -fx-box-border: none;
+    -fx-background-color: #e54f4f;
+}
+.text-area:focused {
+    -fx-highlight-fill: #e54f4f;
+    -fx-border-color: #e54f4f;
+    -fx-background-color: #e54f4f;
+}
+.text-area .content {
+    -fx-box-border: none;
+    -fx-background-color: #e54f4f;
+    -fx-highlight-fill: #e54f4f;
+}
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 7px;
+}
+.text-area .scroll-bar .increment-button,
+.text-area .scroll-bar .decrement-button{
+    -fx-opacity: 0;
+}

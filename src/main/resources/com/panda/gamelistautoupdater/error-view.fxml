@@ -2,12 +2,12 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="227.0" prefWidth="521.0" stylesheets="@stylesheets/error-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -28,16 +28,12 @@
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="110.0" prefWidth="486.0" styleClass="description-wrapper">
-         <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="AUTH001: Invalid username or password.AUTH002: Your session has expired. Please log in again.AUTH003: Access denied. You do not have the required permissions.AUTH004: Too many failed login attempts. Try again later.VAL001: Required field missing: {field_name}." wrappingWidth="483.8625183105469">
-               <font>
-                  <Font name="Roboto Regular" size="12.0" />
-               </font>
-            </Text>
-         </children>
          <padding>
             <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
          </padding>
+         <children>
+            <TextArea editable="false" prefHeight="90.0" prefWidth="485.0" styleClass="textarea" text="AUTH001: Invalid username or password.&#10;AUTH002: Your session has expired. Please log in again.&#10;AUTH003: Access denied. You do not have the required permissions.&#10;AUTH004: Too many failed login attempts. Try again later.&#10;VAL001: Required field missing: {field_name}." />
+         </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="62.0" prefWidth="482.0" spacing="15.0">
          <children>

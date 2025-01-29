@@ -1,6 +1,7 @@
 package com.panda.gamelistautoupdater.controllers;
 
 import com.panda.gamelistautoupdater.Main;
+import com.panda.gamelistautoupdater.util.UIUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -41,15 +42,7 @@ public class MainController {
         });
     }
     private void displayFbCredentialsView() throws IOException {
-        Stage fbStage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("fb-credentials-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Main.makeStageDraggable(fbStage, scene);
-        scene.setFill(Color.TRANSPARENT);
-        fbStage.initStyle(StageStyle.UNDECORATED);
-        fbStage.initModality(Modality.APPLICATION_MODAL);
-        fbStage.setScene(scene);
-        fbStage.show();
+        UIUtility.showDialog("fb-credentials-view.fxml");
     }
 
 }
