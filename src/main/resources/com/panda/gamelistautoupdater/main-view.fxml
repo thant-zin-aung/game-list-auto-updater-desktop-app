@@ -42,7 +42,7 @@
                </children>
             </HBox>
             <Pane prefHeight="20.0" prefWidth="363.0" />
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100%;" styleClass="minimize-button">
+            <HBox fx:id="minimizeButton" alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100%;" styleClass="minimize-button">
                <children>
                   <ImageView fitHeight="24.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,7 +57,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </HBox>
-            <HBox alignment="CENTER" layoutX="517.0" layoutY="23.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100%;" styleClass="close-button">
+            <HBox fx:id="closeButton" alignment="CENTER" layoutX="517.0" layoutY="23.0" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 100%;" styleClass="close-button">
                <children>
                   <ImageView fitHeight="15.0" fitWidth="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -310,7 +310,7 @@
                </children>
             </HBox>
          </children></VBox>
-      <Button layoutX="530.0" layoutY="340.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="142.0" styleClass="update-button" text="Update" />
+      <Button layoutX="530.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#clickOnUpdateButton" prefHeight="35.0" prefWidth="142.0" styleClass="update-button" text="Update" />
       <Text fill="WHITE" layoutX="370.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acknowledge">
          <font>
             <Font name="System Bold" size="13.0" />
