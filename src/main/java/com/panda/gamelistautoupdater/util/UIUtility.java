@@ -1,6 +1,7 @@
 package com.panda.gamelistautoupdater.util;
 
 import com.panda.gamelistautoupdater.Main;
+import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.controllers.ErrorController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +15,8 @@ import java.io.IOException;
 
 public class UIUtility {
     public static void showErrorDialog(String errorMessage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("error-view.fxml"));
-        loader.load();
-        ((ErrorController)loader.getController()).setErrorMessage(errorMessage);
         showDialog("error-view.fxml");
+        ControllerManipulator.getErrorController().setErrorMessage(errorMessage);
     }
 
     public static void showDialog(String fxmlPath) {
@@ -25,6 +24,9 @@ public class UIUtility {
             Stage fbStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
             Scene scene = new Scene(fxmlLoader.load());
+            if(fxmlLoader.getController() instanceof ErrorController && ControllerManipulator.getErrorController() == null) {
+                ControllerManipulator.setErrorController(fxmlLoader.getController());
+            }
             Main.makeStageDraggable(fbStage, scene);
             scene.setFill(Color.TRANSPARENT);
             fbStage.initStyle(StageStyle.UNDECORATED);

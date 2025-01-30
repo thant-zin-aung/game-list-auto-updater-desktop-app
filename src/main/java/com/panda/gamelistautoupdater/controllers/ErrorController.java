@@ -8,8 +8,6 @@ public class ErrorController {
     private TextArea textArea;
 
     public void setErrorMessage(String message) {
-        System.out.println("Error label changed...");
-        textArea.clear();
         textArea.setText(message);
     }
 }
