@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -32,6 +33,13 @@ public class MainController {
     @FXML
     private Button browseButton;
 
+    @FXML
+    private CheckBox ytCheckbox;
+    @FXML
+    private CheckBox fbCheckbox;
+    @FXML
+    private TextField browserField;
+
     public void initialize() {
         System.out.println(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
@@ -39,18 +47,9 @@ public class MainController {
     }
 
     @FXML
-    public void clickOnUpdateButton() throws IOException {
-        ChromeInitializer.initialize();
-        FacebookInitializer.initialize();
-        if(!YoutubeInitializer.initialize()) {
-            UIUtility.showErrorDialog("""
-                    - Something wrong with youtube api
-                    - Maybe credentials path or file is wrong
-                    - Or internet connection issue
-                    """);
-        }
-//        displayFbCredentialsView();
-//        UIUtility.showErrorDialog("- controller testing");
+    public void clickOnUpdateButton() {
+        if(!startAppInitializationProcess()) return;
+
     }
 
 
@@ -61,6 +60,29 @@ public class MainController {
             YoutubeInitializer.addYoutubeCredentialEnv(credentialPath);
             ytCredentialPathLabel.setText(credentialPath);
         }
+    }
+
+    private boolean startAppInitializationProcess() {
+        boolean flag = true;
+        try {
+            ChromeInitializer.initialize();
+            if(fbCheckbox.isSelected()) {
+                FacebookInitializer.initialize();
+            }
+            if(ytCheckbox.isSelected()) {
+                if(!YoutubeInitializer.initialize()) {
+                    throw new Exception("""
+                    - Something wrong with youtube api
+                    - Maybe credentials path or file is wrong
+                    - Or internet connection issue
+                    """);
+                }
+            }
+        } catch (Exception ioe) {
+            flag = false;
+            UIUtility.showDialog(ioe.getMessage());
+        }
+        return flag;
     }
     private void makeMenuButtonWorks() {
         minimizeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
