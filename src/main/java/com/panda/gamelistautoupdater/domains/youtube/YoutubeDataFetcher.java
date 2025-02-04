@@ -15,11 +15,9 @@ import com.google.api.services.youtube.YouTubeScopes;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.SearchResultSnippet;
+import com.panda.gamelistautoupdater.initializers.YoutubeInitializer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -41,7 +39,9 @@ public class YoutubeDataFetcher {
 
     private static Credential authorize(final NetHttpTransport httpTransport) throws Exception {
         createRefreshTokenDirectory();
-        InputStream in = YoutubeDataFetcher.class.getResourceAsStream("/com/panda/gamelistautoupdater/credentials.json");
+//        InputStream in = YoutubeDataFetcher.class.getResourceAsStream("/com/panda/gamelistautoupdater/credentials.json");
+        InputStream in = new FileInputStream(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
+
         if (in == null) {
             throw new FileNotFoundException("Resource not found: credentials.json");
         }

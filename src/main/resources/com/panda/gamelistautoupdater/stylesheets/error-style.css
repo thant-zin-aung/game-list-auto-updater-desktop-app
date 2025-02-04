@@ -6,6 +6,7 @@
 }
 .description-wrapper {
     -fx-background-color: #e54f4f;
+    -fx-cursor: hand;
 }
 .first-description-wrapper {
     -fx-border-color: #ffffff;

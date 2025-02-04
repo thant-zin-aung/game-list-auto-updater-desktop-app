@@ -46,6 +46,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 13px;
     -fx-background-radius: 30px;
+    -fx-cursor: hand;
 }
 .location-input-field {
     -fx-font-weight: 600;
@@ -62,6 +63,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 15px;
     -fx-background-radius: 30px;
+    -fx-cursor: hand;
 }
 
 

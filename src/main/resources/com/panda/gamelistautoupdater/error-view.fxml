@@ -42,25 +42,8 @@
                   <Font size="10.0" />
                </font>
             </Text>
-            <Pane prefHeight="62.0" prefWidth="82.0" />
-            <HBox alignment="CENTER" prefHeight="33.0" prefWidth="94.0">
-               <padding>
-                  <Insets left="20.0" right="20.0" />
-               </padding>
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nope">
-                     <font>
-                        <Font name="Roboto Bold" size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-               <styleClass>
-                  <String fx:value="description-wrapper" />
-                  <String fx:value="button" />
-                  <String fx:value="nope-button" />
-               </styleClass>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="397.0" layoutY="39.0" prefHeight="33.0" prefWidth="94.0">
+            <Pane prefHeight="62.0" prefWidth="181.0" />
+            <HBox fx:id="okButton" alignment="CENTER" layoutX="397.0" layoutY="39.0" prefHeight="33.0" prefWidth="94.0">
                <padding>
                   <Insets left="20.0" right="20.0" />
                </padding>
