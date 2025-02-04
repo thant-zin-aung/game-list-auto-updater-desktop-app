@@ -1,4 +1,4 @@
-package com.panda.gamelistautoupdater;
+package com.panda.gamelistautoupdater.initializers;
 
 import com.panda.gamelistautoupdater.exceptions.ChromeRelatedException;
 import com.panda.gamelistautoupdater.util.CommandLine;
@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 // Beware of that, this application does only support starting from Chrome version 120.0.6098.0
-public class Initializer {
+public class ChromeInitializer {
     private static final String CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
     private static final String CHROME_DRIVER_DEST_PATH = "C:\\Users\\"+System.getProperty("user.name")+"\\Documents\\chromedriver";
     public static boolean initialize() {

@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class FacebookHandler {
-    private static final String ENV_FB_PAGE_TOKEN_KEY = "fb_long_live_page_access_token";
-    private static final String ENV_FB_APP_ID_KEY = "fb_app_id";
-    private static final String ENV_FB_APP_SECRET_KEY = "fb_app_secret";
+    public static final String ENV_FB_PAGE_TOKEN_KEY = "fb_long_live_page_access_token";
+    public static final String ENV_FB_APP_ID_KEY = "fb_app_id";
+    public static final String ENV_FB_APP_SECRET_KEY = "fb_app_secret";
     private static final String BASE_URL = "https://graph.facebook.com/v21.0";
 //    static String appScopeUserId = "2295734984145341";
 //    static String appId = "587519854112328";
@@ -59,10 +59,10 @@ public class FacebookHandler {
         }
     }
 
-    public static boolean tokenExpiryChecker() throws IOException {
+    public static boolean isTokenExpired() throws IOException {
         String pageToken = System.getenv(ENV_FB_PAGE_TOKEN_KEY);
         if(pageToken==null) {
-            return false;
+            return true;
         }
         OkHttpClient client = new OkHttpClient();
 

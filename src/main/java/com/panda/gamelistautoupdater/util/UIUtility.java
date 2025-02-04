@@ -19,6 +19,10 @@ public class UIUtility {
         ControllerManipulator.getErrorController().setErrorMessage(errorMessage);
     }
 
+    public static void showFacebookCredentialsDialog() {
+        showDialog("fb-credentials-view.fxml");
+    }
+
     public static void showDialog(String fxmlPath) {
         try {
             Stage fbStage = new Stage();

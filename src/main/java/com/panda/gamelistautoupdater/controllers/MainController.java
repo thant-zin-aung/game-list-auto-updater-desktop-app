@@ -1,6 +1,8 @@
 package com.panda.gamelistautoupdater.controllers;
 
 import com.panda.gamelistautoupdater.Main;
+import com.panda.gamelistautoupdater.initializers.ChromeInitializer;
+import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
 import com.panda.gamelistautoupdater.util.UIUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +29,10 @@ public class MainController {
 
     @FXML
     public void clickOnUpdateButton() throws IOException {
-        displayFbCredentialsView();
-        UIUtility.showErrorDialog("- controller testing");
+        ChromeInitializer.initialize();
+        FacebookInitializer.initialize();
+//        displayFbCredentialsView();
+//        UIUtility.showErrorDialog("- controller testing");
     }
 
 

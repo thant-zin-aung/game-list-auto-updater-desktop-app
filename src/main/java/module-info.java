@@ -22,4 +22,6 @@ module com.panda.gamelistautoupdater {
     exports com.panda.gamelistautoupdater;
     exports com.panda.gamelistautoupdater.controllers;
     opens com.panda.gamelistautoupdater.controllers to javafx.fxml;
+    exports com.panda.gamelistautoupdater.initializers;
+    opens com.panda.gamelistautoupdater.initializers to javafx.fxml;
 }
