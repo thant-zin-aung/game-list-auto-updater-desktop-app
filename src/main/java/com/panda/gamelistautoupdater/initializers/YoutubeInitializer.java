@@ -9,6 +9,7 @@ public class YoutubeInitializer {
         boolean flag = false;
         if(System.getenv(YOUTUBE_CREDENTIAL_ENV)!=null) {
             try {
+                YoutubeDataFetcher.deleteRefreshTokenDirectory();
                 YoutubeDataFetcher.fetch("testing");
                 flag = true;
             } catch (Exception e) {

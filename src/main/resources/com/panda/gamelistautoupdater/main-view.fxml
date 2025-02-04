@@ -139,7 +139,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="47.0" prefHeight="43.0" prefWidth="646.0" spacing="20.0">
                <children>
-                  <TextField fx:id="ytCredentialPathLabel" prefHeight="35.0" prefWidth="518.0" styleClass="location-input-field" text="C:\Users\Admin\Documents\credentials.json" />
+                  <TextField fx:id="ytCredentialPathLabel" editable="false" prefHeight="35.0" prefWidth="518.0" styleClass="location-input-field" text="C:\Users\Admin\Documents\credentials.json" />
                   <Button fx:id="browseButton" mnemonicParsing="false" onMouseClicked="#clickOnBrowseButton" prefHeight="35.0" prefWidth="142.0" styleClass="browse-button" text="Browse" />
                </children>
             </HBox>

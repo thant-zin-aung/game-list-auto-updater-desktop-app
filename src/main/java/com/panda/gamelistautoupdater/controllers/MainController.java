@@ -33,6 +33,8 @@ public class MainController {
     private Button browseButton;
 
     public void initialize() {
+        System.out.println(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
+        ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         makeMenuButtonWorks();
     }
 
@@ -57,6 +59,7 @@ public class MainController {
         String credentialPath = showFileChooserDialog();
         if(credentialPath != null) {
             YoutubeInitializer.addYoutubeCredentialEnv(credentialPath);
+            ytCredentialPathLabel.setText(credentialPath);
         }
     }
     private void makeMenuButtonWorks() {
