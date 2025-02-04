@@ -7,14 +7,13 @@ import java.io.IOException;
 
 public class FacebookInitializer {
 
-    public static boolean initialize() {
+    public static void initialize() {
         try {
             if(System.getenv(FacebookHandler.ENV_FB_PAGE_TOKEN_KEY)==null || FacebookHandler.isTokenExpired()) {
                 UIUtility.showFacebookCredentialsDialog();
             }
-        } catch (IOException exception) {
-            exception.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return false;
     }
 }

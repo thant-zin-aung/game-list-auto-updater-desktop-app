@@ -3,6 +3,7 @@ package com.panda.gamelistautoupdater.controllers;
 import com.panda.gamelistautoupdater.Main;
 import com.panda.gamelistautoupdater.initializers.ChromeInitializer;
 import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
+import com.panda.gamelistautoupdater.initializers.YoutubeInitializer;
 import com.panda.gamelistautoupdater.util.UIUtility;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,13 @@ public class MainController {
     public void clickOnUpdateButton() throws IOException {
         ChromeInitializer.initialize();
         FacebookInitializer.initialize();
+        if(!YoutubeInitializer.initialize()) {
+            UIUtility.showErrorDialog("""
+                    - Something wrong with youtube api
+                    - Maybe credentials path or file is wrong
+                    - Or internet connection issue
+                    """);
+        }
 //        displayFbCredentialsView();
 //        UIUtility.showErrorDialog("- controller testing");
     }
