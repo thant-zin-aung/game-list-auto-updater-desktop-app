@@ -1,6 +1,7 @@
 package com.panda.gamelistautoupdater.controllers;
 
 import com.panda.gamelistautoupdater.Main;
+import com.panda.gamelistautoupdater.domains.scraping.IggGameWebScraper;
 import com.panda.gamelistautoupdater.initializers.ChromeInitializer;
 import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
 import com.panda.gamelistautoupdater.initializers.YoutubeInitializer;
@@ -41,7 +42,6 @@ public class MainController {
     private TextField browserField;
 
     public void initialize() {
-        System.out.println(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         makeMenuButtonWorks();
     }
@@ -49,7 +49,6 @@ public class MainController {
     @FXML
     public void clickOnUpdateButton() {
         if(!startAppInitializationProcess()) return;
-
     }
 
 

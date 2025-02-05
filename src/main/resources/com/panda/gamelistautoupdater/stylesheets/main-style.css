@@ -72,7 +72,7 @@
 
 .progress {
     -fx-progress-color: #00ad89;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }
 .complete-checkbox {
 
