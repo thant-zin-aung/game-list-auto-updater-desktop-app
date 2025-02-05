@@ -1,6 +1,7 @@
 package com.panda.gamelistautoupdater.controllers;
 
 
+import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
 import com.panda.gamelistautoupdater.util.UIUtility;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -26,5 +27,10 @@ public class FBCredentialsController {
         stage.close();
     }
 
+    @FXML
+    public void clickOnSetButton() {
+        FacebookInitializer.setCredentials(appId.getText(), appSecret.getText(), appScopeUserId.getText(), shortLivePageToken.getText());
+        clickOnCloseButton();
+    }
 
 }

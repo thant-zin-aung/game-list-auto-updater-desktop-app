@@ -2,6 +2,7 @@ package com.panda.gamelistautoupdater.domains.facebook;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.panda.gamelistautoupdater.util.UIUtility;
 import okhttp3.*;
 import com.panda.gamelistautoupdater.util.CommandLine;
 
@@ -147,7 +148,11 @@ public class FacebookHandler {
             addFacebookEnvironmentValue(longLivePageAccessToken);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            UIUtility.showErrorDialog("""
+                            - Facebook credentials are not fully set
+                            - Or credentials are expired/incorrect
+                            - Or cannot connect to facebook
+                            [Api message] - %s""".formatted(e.getMessage()));
         }
     }
 }

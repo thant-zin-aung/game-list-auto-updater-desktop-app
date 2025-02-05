@@ -14,7 +14,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 public class UIUtility {
-    public static void showErrorDialog(String errorMessage) throws IOException {
+    public static void showErrorDialog(String errorMessage) {
         showDialog("error-view.fxml");
         ControllerManipulator.getErrorController().setErrorMessage(errorMessage);
     }
