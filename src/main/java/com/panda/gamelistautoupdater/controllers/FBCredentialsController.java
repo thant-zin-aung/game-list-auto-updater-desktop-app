@@ -19,6 +19,8 @@ public class FBCredentialsController {
     private TextField appScopeUserId;
     @FXML
     private TextField shortLivePageToken;
+    @FXML
+    private TextField pageId;
 
 
     @FXML
@@ -29,7 +31,7 @@ public class FBCredentialsController {
 
     @FXML
     public void clickOnSetButton() {
-        FacebookInitializer.setCredentials(appId.getText(), appSecret.getText(), appScopeUserId.getText(), shortLivePageToken.getText());
+        FacebookInitializer.setCredentials(appId.getText(), appSecret.getText(), appScopeUserId.getText(), pageId.getText(), shortLivePageToken.getText());
         clickOnCloseButton();
     }
 

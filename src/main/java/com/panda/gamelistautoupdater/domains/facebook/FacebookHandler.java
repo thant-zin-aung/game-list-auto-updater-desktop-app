@@ -12,28 +12,17 @@ import java.util.Objects;
 
 public class FacebookHandler {
     public static final String ENV_FB_PAGE_TOKEN_KEY = "fb_long_live_page_access_token";
-    public static final String ENV_FB_APP_ID_KEY = "fb_app_id";
-    public static final String ENV_FB_APP_SECRET_KEY = "fb_app_secret";
+    public static final String ENV_FB_PAGE_ID = "fb_page_id";
     private static final String BASE_URL = "https://graph.facebook.com/v21.0";
-//    static String appScopeUserId = "2295734984145341";
-//    static String appId = "587519854112328";
-//    static String appSecret = "9201df7ce8f1799dab84f6712b88a550";
 
     public static void post() {
-        String endPointUrl = BASE_URL+"/208701392320007/photos";
+        String endPointUrl = BASE_URL+"/"+System.getenv(ENV_FB_PAGE_ID)+"/photos";
         String imagePath = "C:\\Users\\black\\Pictures\\My Dream Setups\\ss34.png";
         String message = "Dream Setup 10";
 
-        // Define the OkHttpClient
         OkHttpClient client = new OkHttpClient();
-
-        // File to be uploaded
         File imageFile = new File(imagePath);
-
-        // Create the request body for the image file
         RequestBody imageBody = RequestBody.create(imageFile, MediaType.parse("image/jpeg"));
-
-        // Create the text part of the request
         RequestBody textBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("access_token", System.getenv(ENV_FB_PAGE_TOKEN_KEY))
@@ -41,13 +30,11 @@ public class FacebookHandler {
                 .addFormDataPart("source", imageFile.getName(), imageBody)
                 .build();
 
-        // Define the POST request
         Request request = new Request.Builder()
                 .url(endPointUrl) // Replace with your endpoint
                 .post(textBody)
                 .build();
 
-        // Execute the request
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 System.out.println("Response: " + response.body().string());
@@ -76,7 +63,13 @@ public class FacebookHandler {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            return response.isSuccessful();
+            if(response.isSuccessful()) return false;
+            else {
+                assert response.body() != null;
+                throw new IOException(response.body().string());
+            }
+        } catch (Exception e) {
+            throw new IOException(e.getMessage());
         }
     }
 
@@ -123,21 +116,22 @@ public class FacebookHandler {
         }
     }
 
-    private static void addFacebookEnvironmentValue(String longLivePageAccessToken) {
+    private static void addFacebookEnvironmentValue(String longLivePageAccessToken, String pageId) {
         try {
             CommandLine.i().getResultOfExecution("setx "+ENV_FB_PAGE_TOKEN_KEY+" "+longLivePageAccessToken);
+            CommandLine.i().getResultOfExecution("setx "+ENV_FB_PAGE_ID+" "+pageId);
         } catch (Exception e) {
             System.out.println("Failed to add fb long live page access key to environment...");
             System.out.println("Error: "+e.getMessage());
         }
     }
 
-    public static void extendPageAccessToken(String appId, String appSecret, String appScopeUserId, String shortLivePageAccessToken) {
+    public static void extendPageAccessToken(String appId, String appSecret, String appScopeUserId, String pageId, String shortLivePageAccessToken) {
 
         try {
-            // Step 1: Get Long-Lived User Token
+            // Get Long-Lived User Token
             String longLivedUserToken = getLongLivedUserToken(appId, appSecret, shortLivePageAccessToken);
-            // Step 2: Get Page Access Token
+            // Get Page Access Token
             String pageAccessTokenJson = getPageAccessToken(appScopeUserId, longLivedUserToken);
             System.out.println("Page Access Token Response: " + pageAccessTokenJson);
 
@@ -145,7 +139,7 @@ public class FacebookHandler {
             String longLivePageAccessToken = jsonObject.get("data").getAsJsonArray().get(0).getAsJsonObject().get("access_token").getAsString();
             System.out.println("Extracted page long live access token: "+ jsonObject.get("data").getAsJsonArray().get(0).getAsJsonObject().get("access_token").getAsString());
 
-            addFacebookEnvironmentValue(longLivePageAccessToken);
+            addFacebookEnvironmentValue(longLivePageAccessToken, pageId);
 
         } catch (IOException e) {
             UIUtility.showErrorDialog("""

@@ -79,7 +79,7 @@ public class MainController {
             }
         } catch (Exception ioe) {
             flag = false;
-            UIUtility.showDialog(ioe.getMessage());
+            UIUtility.showErrorDialog(ioe.getMessage());
         }
         return flag;
     }

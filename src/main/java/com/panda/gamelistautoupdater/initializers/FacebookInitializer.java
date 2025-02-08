@@ -12,22 +12,20 @@ public class FacebookInitializer {
     private static String appSecret;
     private static String appScopeUserId;
     private static String shortLivePageToken;
-    public static void initialize() {
-        try {
-            if(System.getenv(FacebookHandler.ENV_FB_PAGE_TOKEN_KEY)==null || FacebookHandler.isTokenExpired()) {
-                UIUtility.showFacebookCredentialsDialog();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static String pageId;
+    public static void initialize() throws Exception {
+        if(System.getenv(FacebookHandler.ENV_FB_PAGE_TOKEN_KEY)==null || FacebookHandler.isTokenExpired()) {
+            UIUtility.showFacebookCredentialsDialog();
         }
     }
 
-    public static void setCredentials(String appId, String appSecret, String appScopeUserId, String shortLivePageToken) {
+    public static void setCredentials(String appId, String appSecret, String appScopeUserId, String pageId, String shortLivePageToken) {
         FacebookInitializer.appId = appId;
         FacebookInitializer.appSecret = appSecret;
         FacebookInitializer.appScopeUserId = appScopeUserId;
+        FacebookInitializer.pageId = pageId;
         FacebookInitializer.shortLivePageToken = shortLivePageToken;
-        FacebookHandler.extendPageAccessToken(appId, appSecret, appScopeUserId, shortLivePageToken);
+        FacebookHandler.extendPageAccessToken(appId, appSecret, appScopeUserId, pageId, shortLivePageToken);
     }
 
     public static boolean isAllCredentialsSet() {
@@ -44,6 +42,10 @@ public class FacebookInitializer {
 
     public String getAppScopeUserId() {
         return appScopeUserId;
+    }
+
+    public static String getPageId() {
+        return pageId;
     }
 
     public String getShortLivePageToken() {
