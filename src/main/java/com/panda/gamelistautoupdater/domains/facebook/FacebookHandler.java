@@ -15,20 +15,22 @@ public class FacebookHandler {
     public static final String ENV_FB_PAGE_ID = "fb_page_id";
     private static final String BASE_URL = "https://graph.facebook.com/v21.0";
 
-    public static void post() {
+    private static boolean post(String message, String imagePath, boolean isImageUrl) throws IOException {
         String endPointUrl = BASE_URL+"/"+System.getenv(ENV_FB_PAGE_ID)+"/photos";
-        String imagePath = "C:\\Users\\black\\Pictures\\My Dream Setups\\ss34.png";
-        String message = "Dream Setup 10";
 
         OkHttpClient client = new OkHttpClient();
-        File imageFile = new File(imagePath);
-        RequestBody imageBody = RequestBody.create(imageFile, MediaType.parse("image/jpeg"));
-        RequestBody textBody = new MultipartBody.Builder()
+        MultipartBody.Builder builder = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("access_token", System.getenv(ENV_FB_PAGE_TOKEN_KEY))
-                .addFormDataPart("message", message)
-                .addFormDataPart("source", imageFile.getName(), imageBody)
-                .build();
+                .addFormDataPart("message", message);
+        if(isImageUrl) {
+           builder.addFormDataPart("url", imagePath);
+        } else {
+            File imageFile = new File(imagePath);
+            RequestBody imageBody = RequestBody.create(imageFile, MediaType.parse("image/jpeg"));
+            builder.addFormDataPart("source", imageFile.getName(), imageBody);
+        }
+        RequestBody textBody = builder.build();
 
         Request request = new Request.Builder()
                 .url(endPointUrl) // Replace with your endpoint
@@ -38,13 +40,23 @@ public class FacebookHandler {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 System.out.println("Response: " + response.body().string());
+                return true;
             } else {
-                System.out.println("Response: "+ response.body().string());
-                System.out.println("Request failed with code: " + response.code());
+                throw new IOException("""
+                        - Failed to POST
+                        - [Response]: %s
+                        """.formatted(response.body().string()));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
+    }
+
+    public static boolean postWithUrl(String message, String imageUrl) throws IOException {
+        return post(message, imageUrl, true);
+    }
+    public static boolean postWithFilePath(String message, String imageFilePath) throws IOException {
+        return post(message, imageFilePath, false);
     }
 
     public static boolean isTokenExpired() throws IOException {

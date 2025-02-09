@@ -1,6 +1,7 @@
 package com.panda.gamelistautoupdater.controllers;
 
 import com.panda.gamelistautoupdater.Main;
+import com.panda.gamelistautoupdater.domains.facebook.FacebookHandler;
 import com.panda.gamelistautoupdater.domains.scraping.IggGameWebScraper;
 import com.panda.gamelistautoupdater.initializers.ChromeInitializer;
 import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
@@ -49,6 +50,7 @@ public class MainController {
     @FXML
     public void clickOnUpdateButton() {
         if(!startAppInitializationProcess()) return;
+        startMainProcess();
     }
 
 
@@ -83,6 +85,18 @@ public class MainController {
         }
         return flag;
     }
+    private boolean startMainProcess() {
+        boolean flag = true;
+        try {
+            if(fbCheckbox.isSelected()){
+                FacebookHandler.postWithUrl("testing 2", "https://wallpapercat.com/w/full/1/d/3/5818397.jpg");
+            }
+        } catch (IOException e) {
+            flag = false;
+            UIUtility.showErrorDialog(e.getMessage());
+        }
+        return flag;
+    }
     private void makeMenuButtonWorks() {
         minimizeButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Stage stage = (Stage) minimizeButton.getScene().getWindow();
@@ -93,6 +107,7 @@ public class MainController {
             stage.close();
         });
     }
+
     private String showFileChooserDialog() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select Credentials.json file");
