@@ -2,6 +2,7 @@ package com.panda.gamelistautoupdater;
 
 import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.domains.scraping.IggGameWebScraper;
+import com.panda.gamelistautoupdater.domains.youtube.YoutubeDataFetcher;
 import com.panda.gamelistautoupdater.exceptions.ChromeRelatedException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,11 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+        try {
+            YoutubeDataFetcher.fetch("testing");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {

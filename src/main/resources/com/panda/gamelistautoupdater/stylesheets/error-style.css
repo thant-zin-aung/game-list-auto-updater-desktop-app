@@ -35,7 +35,7 @@
     -fx-highlight-fill: #e54f4f;
 }
 .text-area .scroll-bar:vertical {
-    -fx-pref-width: 7px;
+    -fx-pref-width: 10px;
 }
 .text-area .scroll-bar .increment-button,
 .text-area .scroll-bar .decrement-button{

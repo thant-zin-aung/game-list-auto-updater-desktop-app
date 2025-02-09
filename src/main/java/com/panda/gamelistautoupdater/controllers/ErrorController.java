@@ -9,17 +9,22 @@ import javafx.stage.Stage;
 
 public class ErrorController {
     @FXML
-    private TextArea textArea;
+    public TextArea textArea;
     @FXML
     private HBox okButton;
 
     public void initialize() {
         okButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            textArea.setText("");
             ((Stage)okButton.getScene().getWindow()).close();
         });
     }
 
-    public void setErrorMessage(String message) {
-        Platform.runLater(()->{textArea.setText(message);});
-    }
+//    public void setErrorMessage(String message) {
+//        Platform.runLater(()->{
+//            System.out.println("set called: "+message);
+//            textArea.setText(message);
+//            System.out.println("textarea text: "+textArea.getText());
+//        });
+//    }
 }

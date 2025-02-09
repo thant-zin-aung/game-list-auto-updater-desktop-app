@@ -23,10 +23,11 @@ public class IggGameWebScraper {
     private final String GAME_WEB_URL = "https://igg-games.com";
     private final IggGameAutomateBrowser iggGameAutomateBrowser;
     private int startPageNumber;
+    private final int totalBrowser;
 
-    public IggGameWebScraper(int startPageNumber) {
+    public IggGameWebScraper(int totalBrowser) {
         this.iggGameAutomateBrowser = new IggGameAutomateBrowser();
-        this.startPageNumber = startPageNumber;
+        this.totalBrowser = totalBrowser;
         this.mainController = ControllerManipulator.getMainController();
     }
     public void setStartPageNumber(int startPageNumber) {
@@ -169,7 +170,7 @@ public class IggGameWebScraper {
         wrappedMegaUpLinks.forEach(wrappedLink -> redirectLinks.add(wrappedLink.attr("href")));
         System.out.println(wrappedMegaUpLinks.size());
 //        redirectLinks.forEach(System.out::println);
-        iggGameAutomateBrowser.getActualGameLinks(redirectLinks,4).forEach(System.out::println);
+        iggGameAutomateBrowser.getActualGameLinks(redirectLinks, totalBrowser).forEach(System.out::println);
         return redirectLinks;
     }
 

@@ -32,8 +32,10 @@ public class YoutubeDataFetcher {
         if(!new File(TOKENS_DIRECTORY_PATH).exists()) new File(TOKENS_DIRECTORY_PATH).mkdir();
     }
 
-    public static void deleteRefreshTokenDirectory() {
-        System.out.println("Deleting existing youtube refresh token status: "+new File(TOKENS_DIRECTORY_PATH+"\\StoredCredential").delete());
+    public static boolean deleteRefreshTokenDirectory() {
+        boolean flag = new File(TOKENS_DIRECTORY_PATH+"\\StoredCredential").delete();
+        System.out.println("Deleting existing youtube refresh token status: "+flag);
+        return flag;
     }
 
 
@@ -68,12 +70,14 @@ public class YoutubeDataFetcher {
         YouTube.Search.List request = youtubeService.search().list("snippet");
 
         request.setQ(searchGameTitle.concat(" PC Game Trailer"));
+        System.out.println(searchGameTitle.concat(" PC Game Trailer"));
         request.setType("video");
         request.setMaxResults(10L);
 
         SearchListResponse response = request.execute();
 
         List<SearchResult> searchResults = response.getItems();
+        searchResults.forEach(s -> System.out.println(s.getSnippet().getTitle()));
 
         if (searchResults != null) {
             for (SearchResult result : searchResults) {

@@ -55,6 +55,7 @@ public class MainController {
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         makeMenuButtonWorks();
         initializeUI();
+        ChromeInitializer.initialize();
     }
 
     public void initializeUI() {
@@ -74,10 +75,6 @@ public class MainController {
             postFacebookWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
         });
     }
-
-//    private void removeUnnecessaryUIChild(HBox wrapper) {
-//
-//    }
 
     @FXML
     public void clickOnUpdateButton() {
@@ -126,18 +123,11 @@ public class MainController {
     private boolean startAppInitializationProcess() {
         boolean flag = true;
         try {
-            ChromeInitializer.initialize();
             if(fbCheckbox.isSelected()) {
                 FacebookInitializer.initialize();
             }
             if(ytCheckbox.isSelected()) {
-                if(!YoutubeInitializer.initialize()) {
-                    throw new Exception("""
-                    - Something wrong with youtube api
-                    - Maybe credentials path or file is wrong
-                    - Or internet connection issue
-                    """);
-                }
+                YoutubeInitializer.initialize();
             }
         } catch (Exception ioe) {
             flag = false;

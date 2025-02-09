@@ -16,8 +16,11 @@ import java.io.IOException;
 
 public class UIUtility {
     public static void showErrorDialog(String errorMessage) {
-        showDialog("error-view.fxml");
-        ControllerManipulator.getErrorController().setErrorMessage(errorMessage);
+        Platform.runLater(()->{
+            showDialog("error-view.fxml");
+            ControllerManipulator.getErrorController().textArea.setText(errorMessage);
+            ControllerManipulator.setErrorController(null);
+        });
     }
 
     public static void showFacebookCredentialsDialog() {
@@ -25,23 +28,22 @@ public class UIUtility {
     }
 
     public static void showDialog(String fxmlPath) {
-        Platform.runLater(()->{
-            try {
-                Stage fbStage = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
-                Scene scene = new Scene(fxmlLoader.load());
-                if(fxmlLoader.getController() instanceof ErrorController && ControllerManipulator.getErrorController() == null) {
-                    ControllerManipulator.setErrorController(fxmlLoader.getController());
-                }
-                Main.makeStageDraggable(fbStage, scene);
-                scene.setFill(Color.TRANSPARENT);
-                fbStage.initStyle(StageStyle.UNDECORATED);
-                fbStage.initModality(Modality.APPLICATION_MODAL);
-                fbStage.setScene(scene);
-                fbStage.show();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        Stage fbStage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if(fxmlLoader.getController() instanceof ErrorController && ControllerManipulator.getErrorController() == null) {
+            ControllerManipulator.setErrorController(fxmlLoader.getController());
+        }
+        Main.makeStageDraggable(fbStage, scene);
+        scene.setFill(Color.TRANSPARENT);
+        fbStage.initStyle(StageStyle.UNDECORATED);
+        fbStage.initModality(Modality.APPLICATION_MODAL);
+        fbStage.setScene(scene);
+        fbStage.show();
     }
 }
