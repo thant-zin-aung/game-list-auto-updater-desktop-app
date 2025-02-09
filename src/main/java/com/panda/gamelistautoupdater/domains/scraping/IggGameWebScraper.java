@@ -2,6 +2,7 @@ package com.panda.gamelistautoupdater.domains.scraping;
 
 import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.controllers.MainController;
+import com.panda.gamelistautoupdater.domains.facebook.FacebookHandler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -32,10 +33,11 @@ public class IggGameWebScraper {
         this.startPageNumber = startPageNumber;
     }
 
-    public void start() {
+    public void start() throws Exception {
         try {
             for (int pageCount = startPageNumber ; pageCount >= 1 ; pageCount-- ) {
                 // GUI control
+                mainController.initializeUI();
                 mainController.setPageIndex(pageCount);
                 mainController.setStatusText("Start scraping");
                 Document document = Jsoup.connect(GAME_WEB_URL+"/page/"+pageCount).timeout(200000).get();
@@ -64,11 +66,13 @@ public class IggGameWebScraper {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Error while connecting to "+GAME_WEB_URL);
             System.out.println("Error message: "+e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new Exception("""
+                    - Error while connecting to %s
+                    - Error message: %s
+                    """.formatted(GAME_WEB_URL, e.getMessage()));
         } finally {
             iggGameAutomateBrowser.closeBrowser();
         }
@@ -89,15 +93,25 @@ public class IggGameWebScraper {
         mainController.setStatusText("Extracting genre list");
         getGenreList(document);
         mainController.setStatusText("Extracting specification list");
-        getSpecificationList(document);
+        mainController.markExtractDetailFinish(getSpecificationList(document).size()>0);
         mainController.setStatusText("Extracting download link list");
-        getDownloadLinks(document);
+        mainController.markExtractLinksFinish(getDownloadLinks(document).size()>0);
         mainController.setStatusText("Extracting images list");
-        getGamePlayImages(document, articleMap);
-        mainController.setStatusText("Extracting youtube trailer link");
-        getYoutubeTrailerLink(articleMap);
+        mainController.markExtractImagesFinish(getGamePlayImages(document, articleMap).size()>0);
+        if(mainController.ytCheckbox.isSelected()) {
+            mainController.setStatusText("Extracting youtube trailer link");
+            mainController.markExtractYoutubeFinish(getYoutubeTrailerLink(articleMap) != null);
+        }
         mainController.setStatusText("Uploading game to cloud server");
+        mainController.markUploadGameFinish(true);
         // uploading game to cloud server codes will be here...
+        mainController.setStatusText("Uploading game info to facebook page");
+        if(mainController.fbCheckbox.isSelected()){
+            boolean isUploadSuccess = FacebookHandler.postWithUrl("testing 4", "https://live.staticflickr.com/8566/16456378258_c4a61c07f1_b.jpg");
+            mainController.markPostFacebookFinish(isUploadSuccess);
+        }else mainController.markPostFacebookFinish(false);
+        //Important
+        mainController.initializeUI();
         System.out.println("-".repeat(20));
     }
 

@@ -82,7 +82,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 5px;">
                <children>
-                  <CheckBox fx:id="fbCheckbox" mnemonicParsing="false" prefHeight="10.0" prefWidth="121.0" styleClass="checkbox" text="Upload to facebook" textFill="WHITE">
+                  <CheckBox fx:id="fbCheckbox" mnemonicParsing="false" prefHeight="10.0" prefWidth="121.0" selected="true" styleClass="checkbox" text="Upload to facebook" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -94,7 +94,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 5px;">
                <children>
-                  <CheckBox fx:id="ytCheckbox" mnemonicParsing="false" styleClass="checkbox" text="Youtube trailer" textFill="WHITE">
+                  <CheckBox fx:id="ytCheckbox" mnemonicParsing="false" selected="true" styleClass="checkbox" text="Youtube trailer" textFill="WHITE">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

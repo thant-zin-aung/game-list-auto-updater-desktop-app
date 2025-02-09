@@ -1,5 +1,6 @@
 package com.panda.gamelistautoupdater.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,6 @@ public class ErrorController {
     }
 
     public void setErrorMessage(String message) {
-        textArea.setText(message);
+        Platform.runLater(()->{textArea.setText(message);});
     }
 }

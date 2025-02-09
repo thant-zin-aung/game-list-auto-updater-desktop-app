@@ -3,6 +3,7 @@ package com.panda.gamelistautoupdater.util;
 import com.panda.gamelistautoupdater.Main;
 import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.controllers.ErrorController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,21 +25,23 @@ public class UIUtility {
     }
 
     public static void showDialog(String fxmlPath) {
-        try {
-            Stage fbStage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
-            Scene scene = new Scene(fxmlLoader.load());
-            if(fxmlLoader.getController() instanceof ErrorController && ControllerManipulator.getErrorController() == null) {
-                ControllerManipulator.setErrorController(fxmlLoader.getController());
+        Platform.runLater(()->{
+            try {
+                Stage fbStage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlPath));
+                Scene scene = new Scene(fxmlLoader.load());
+                if(fxmlLoader.getController() instanceof ErrorController && ControllerManipulator.getErrorController() == null) {
+                    ControllerManipulator.setErrorController(fxmlLoader.getController());
+                }
+                Main.makeStageDraggable(fbStage, scene);
+                scene.setFill(Color.TRANSPARENT);
+                fbStage.initStyle(StageStyle.UNDECORATED);
+                fbStage.initModality(Modality.APPLICATION_MODAL);
+                fbStage.setScene(scene);
+                fbStage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-            Main.makeStageDraggable(fbStage, scene);
-            scene.setFill(Color.TRANSPARENT);
-            fbStage.initStyle(StageStyle.UNDECORATED);
-            fbStage.initModality(Modality.APPLICATION_MODAL);
-            fbStage.setScene(scene);
-            fbStage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        });
     }
 }

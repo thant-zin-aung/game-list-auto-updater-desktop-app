@@ -17,7 +17,6 @@ public class FacebookHandler {
     private static final String BASE_URL = "https://graph.facebook.com/v21.0";
 
     private static boolean post(String message, String imagePath, boolean isImageUrl) throws IOException {
-        ControllerManipulator.getMainController().setStatusText("Uploading game info to facebook page");
         String endPointUrl = BASE_URL+"/"+System.getenv(ENV_FB_PAGE_ID)+"/photos";
 
         OkHttpClient client = new OkHttpClient();

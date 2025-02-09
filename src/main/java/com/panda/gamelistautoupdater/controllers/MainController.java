@@ -35,12 +35,9 @@ public class MainController {
     @FXML
     private TextField ytCredentialPathLabel;
     @FXML
-    private Button browseButton;
-
+    public CheckBox ytCheckbox;
     @FXML
-    private CheckBox ytCheckbox;
-    @FXML
-    private CheckBox fbCheckbox;
+    public CheckBox fbCheckbox;
     @FXML
     private TextField browserField;
     @FXML
@@ -60,19 +57,38 @@ public class MainController {
         initializeUI();
     }
 
-    private void initializeUI() {
-        extractDetailsWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
-        extractLinksWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
-        extractImagesWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
-        extractYoutubeWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
-        uploadGameWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
-        postFacebookWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+    public void initializeUI() {
+        Platform.runLater(()->{
+            extractDetailsWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+            extractLinksWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+            extractImagesWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+            extractYoutubeWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+            uploadGameWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+            postFacebookWrapper.getChildren().removeIf(c -> !(c instanceof HBox));
+
+            extractDetailsWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+            extractLinksWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+            extractImagesWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+            extractYoutubeWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+            uploadGameWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+            postFacebookWrapper.getChildren().addAll(getNewProgressIndicator(true), getDoneImageView(false), getWarningImageView(false));
+        });
     }
+
+//    private void removeUnnecessaryUIChild(HBox wrapper) {
+//
+//    }
 
     @FXML
     public void clickOnUpdateButton() {
-        if(!startAppInitializationProcess()) return;
-        startMainProcess();
+        Thread processThread = new Thread(()->{
+            if(!startAppInitializationProcess()) return;
+            if(!startMainProcess()) {
+                UIUtility.showErrorDialog("- Something wrong with updating");
+            }
+        });
+        processThread.setDaemon(true);
+        processThread.start();
     }
 
 
@@ -132,10 +148,10 @@ public class MainController {
     private boolean startMainProcess() {
         boolean flag = true;
         try {
-            if(fbCheckbox.isSelected()){
-                FacebookHandler.postWithUrl("testing 2", "https://wallpapercat.com/w/full/1/d/3/5818397.jpg");
-            }
-        } catch (IOException e) {
+            IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(Integer.parseInt(browserField.getText()));
+            iggGameWebScraper.setStartPageNumber(Integer.parseInt(pageIndexField.getText()));
+            iggGameWebScraper.start();
+        } catch (Exception e) {
             flag = false;
             UIUtility.showErrorDialog(e.getMessage());
         }
@@ -171,27 +187,41 @@ public class MainController {
         Platform.runLater(()-> statusText.setText(status));
     }
 
-    public static ProgressIndicator getNewProgressIndicator() {
+    public ProgressIndicator getNewProgressIndicator(boolean visibility) {
         ProgressIndicator progressIndicator = new ProgressIndicator();
         progressIndicator.setProgress(-1);
         progressIndicator.setPrefWidth(14);
         progressIndicator.setPrefHeight(13);
         progressIndicator.setStyle("-fx-progress-color: #00ad89;");
+        progressIndicator.setVisible(visibility);
         return progressIndicator;
     }
-    private static ImageView getNewImageView(String imagePath) {
+    private ImageView getNewImageView(String imagePath, boolean visibility) {
         ImageView imageView = new ImageView(new Image(Objects.requireNonNull(MainController.class.getClassLoader().getResource(imagePath)).toExternalForm()));
         imageView.setFitWidth(22);
         imageView.setFitHeight(16);
         imageView.setPreserveRatio(true);
         imageView.setSmooth(true);
+        imageView.setVisible(visibility);
         return imageView;
     }
-    public static ImageView getDoneImageView() {
-        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/done.png");
+    public ImageView getDoneImageView( boolean visibility) {
+        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/done.png", visibility);
     }
-    public static ImageView getWarningImageView() {
-        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/warning.png");
+    public ImageView getWarningImageView( boolean visibility) {
+        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/warning.png", visibility);
     }
-
+    private void markProcessFinish(HBox wrapper, boolean isSuccess) {
+        Platform.runLater(()->{
+            wrapper.getChildren().remove(1);
+            wrapper.getChildren().remove(isSuccess?2:1);
+            wrapper.getChildren().get(1).setVisible(true);
+        });
+    }
+    public void markExtractDetailFinish(boolean isSuccess) {markProcessFinish(extractDetailsWrapper, isSuccess);}
+    public void markExtractLinksFinish(boolean isSuccess) {markProcessFinish(extractLinksWrapper, isSuccess);}
+    public void markExtractImagesFinish(boolean isSuccess) {markProcessFinish(extractImagesWrapper, isSuccess);}
+    public void markExtractYoutubeFinish(boolean isSuccess) {markProcessFinish(extractYoutubeWrapper, isSuccess);}
+    public void markUploadGameFinish(boolean isSuccess) {markProcessFinish(uploadGameWrapper, isSuccess);}
+    public void markPostFacebookFinish(boolean isSuccess) {markProcessFinish(postFacebookWrapper, isSuccess);}
 }
