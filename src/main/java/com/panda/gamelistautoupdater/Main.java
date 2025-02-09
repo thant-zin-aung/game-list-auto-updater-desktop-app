@@ -29,11 +29,11 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        new Thread(() -> {
-            // test scraping
-            IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(90);
-            iggGameWebScraper.start();
-        }).start();
+//        new Thread(() -> {
+//            // test scraping
+//            IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(90);
+//            iggGameWebScraper.start();
+//        }).start();
     }
 
     public static void main(String[] args) {

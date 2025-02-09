@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -222,7 +221,7 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="extractDetailsWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="68.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
                      <children>
@@ -233,20 +232,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="16.0" fitWidth="22.0" layoutX="212.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/warning.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="29.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="extractLinksWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="29.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
                      <children>
@@ -257,15 +245,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="extractImagesWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="48.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
                      <children>
@@ -276,15 +258,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="87.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="extractYoutubeWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="87.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="188.0">
                      <children>
@@ -295,15 +271,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="uploadGameWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
                      <children>
@@ -314,15 +284,9 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="19.0" prefWidth="331.0">
+            <HBox fx:id="postFacebookWrapper" alignment="CENTER_LEFT" layoutX="10.0" layoutY="125.0" prefHeight="19.0" prefWidth="331.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="82.0">
                      <children>
@@ -333,12 +297,6 @@
                         </Text>
                      </children>
                   </HBox>
-                  <ProgressIndicator prefHeight="13.0" prefWidth="14.0" styleClass="progress" />
-                  <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/app-icons/done.png" />
-                     </image>
-                  </ImageView>
                </children>
             </HBox>
          </children></VBox>

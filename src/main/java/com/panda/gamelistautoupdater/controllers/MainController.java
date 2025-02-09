@@ -11,10 +11,9 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -26,6 +25,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainController {
     @FXML
@@ -51,10 +51,22 @@ public class MainController {
     private Label gameTitleLabel;
     @FXML
     private Text statusText;
+    @FXML
+    private HBox extractDetailsWrapper, extractLinksWrapper, extractImagesWrapper, extractYoutubeWrapper, uploadGameWrapper, postFacebookWrapper;
 
     public void initialize() {
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
         makeMenuButtonWorks();
+        initializeUI();
+    }
+
+    private void initializeUI() {
+        extractDetailsWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+        extractLinksWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+        extractImagesWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+        extractYoutubeWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+        uploadGameWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
+        postFacebookWrapper.getChildren().addAll(getNewProgressIndicator(), getDoneImageView(), getWarningImageView());
     }
 
     @FXML
@@ -157,6 +169,29 @@ public class MainController {
     }
     public void setStatusText(String status) {
         Platform.runLater(()-> statusText.setText(status));
+    }
+
+    public static ProgressIndicator getNewProgressIndicator() {
+        ProgressIndicator progressIndicator = new ProgressIndicator();
+        progressIndicator.setProgress(-1);
+        progressIndicator.setPrefWidth(14);
+        progressIndicator.setPrefHeight(13);
+        progressIndicator.setStyle("-fx-progress-color: #00ad89;");
+        return progressIndicator;
+    }
+    private static ImageView getNewImageView(String imagePath) {
+        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(MainController.class.getClassLoader().getResource(imagePath)).toExternalForm()));
+        imageView.setFitWidth(22);
+        imageView.setFitHeight(16);
+        imageView.setPreserveRatio(true);
+        imageView.setSmooth(true);
+        return imageView;
+    }
+    public static ImageView getDoneImageView() {
+        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/done.png");
+    }
+    public static ImageView getWarningImageView() {
+        return getNewImageView("com/panda/gamelistautoupdater/img/app-icons/warning.png");
     }
 
 }
