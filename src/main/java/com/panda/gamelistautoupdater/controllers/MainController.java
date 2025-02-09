@@ -7,6 +7,7 @@ import com.panda.gamelistautoupdater.initializers.ChromeInitializer;
 import com.panda.gamelistautoupdater.initializers.FacebookInitializer;
 import com.panda.gamelistautoupdater.initializers.YoutubeInitializer;
 import com.panda.gamelistautoupdater.util.UIUtility;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -43,6 +45,12 @@ public class MainController {
     private TextField browserField;
     @FXML
     private TextField pageIndexField;
+    @FXML
+    private Text pageIndexText;
+    @FXML
+    private Label gameTitleLabel;
+    @FXML
+    private Text statusText;
 
     public void initialize() {
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
@@ -139,6 +147,16 @@ public class MainController {
         fileChooser.getExtensionFilters().add(extFilter);
         File selectedFile = fileChooser.showOpenDialog(ytCredentialPathLabel.getScene().getWindow());
         return selectedFile==null ? null : selectedFile.getAbsolutePath();
+    }
+
+    public void setPageIndex(int index) {
+        Platform.runLater(()-> pageIndexText.setText(String.valueOf(index)));
+    }
+    public void setGameTitleText(String gameTitle) {
+        Platform.runLater(()-> gameTitleLabel.setText(gameTitle));
+    }
+    public void setStatusText(String status) {
+        Platform.runLater(()-> statusText.setText(status));
     }
 
 }

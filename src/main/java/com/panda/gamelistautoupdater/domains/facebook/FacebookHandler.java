@@ -2,6 +2,7 @@ package com.panda.gamelistautoupdater.domains.facebook;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.util.UIUtility;
 import okhttp3.*;
 import com.panda.gamelistautoupdater.util.CommandLine;
@@ -16,6 +17,7 @@ public class FacebookHandler {
     private static final String BASE_URL = "https://graph.facebook.com/v21.0";
 
     private static boolean post(String message, String imagePath, boolean isImageUrl) throws IOException {
+        ControllerManipulator.getMainController().setStatusText("Uploading game info to facebook page");
         String endPointUrl = BASE_URL+"/"+System.getenv(ENV_FB_PAGE_ID)+"/photos";
 
         OkHttpClient client = new OkHttpClient();

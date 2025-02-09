@@ -1,5 +1,7 @@
 package com.panda.gamelistautoupdater;
 
+import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
+import com.panda.gamelistautoupdater.domains.scraping.IggGameWebScraper;
 import com.panda.gamelistautoupdater.exceptions.ChromeRelatedException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +23,17 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        ControllerManipulator.setMainController(fxmlLoader.getController());
         makeStageDraggable(stage, scene);
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+        new Thread(() -> {
+            // test scraping
+            IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(90);
+            iggGameWebScraper.start();
+        }).start();
     }
 
     public static void main(String[] args) {

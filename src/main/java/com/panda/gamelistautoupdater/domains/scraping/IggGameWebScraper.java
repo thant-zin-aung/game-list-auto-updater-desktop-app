@@ -1,5 +1,7 @@
 package com.panda.gamelistautoupdater.domains.scraping;
 
+import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
+import com.panda.gamelistautoupdater.controllers.MainController;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class IggGameWebScraper {
+    private final MainController mainController;
     private final int MAX_SERVER_ACCEPT_IMAGE_COUNT = 5;
     private final String GAME_WEB_URL = "https://igg-games.com";
     private final IggGameAutomateBrowser iggGameAutomateBrowser;
@@ -23,6 +26,7 @@ public class IggGameWebScraper {
     public IggGameWebScraper(int startPageNumber) {
         this.iggGameAutomateBrowser = new IggGameAutomateBrowser();
         this.startPageNumber = startPageNumber;
+        this.mainController = ControllerManipulator.getMainController();
     }
     public void setStartPageNumber(int startPageNumber) {
         this.startPageNumber = startPageNumber;
@@ -31,9 +35,13 @@ public class IggGameWebScraper {
     public void start() {
         try {
             for (int pageCount = startPageNumber ; pageCount >= 1 ; pageCount-- ) {
+                // GUI control
+                mainController.setPageIndex(pageCount);
+                mainController.setStatusText("Start scraping");
                 Document document = Jsoup.connect(GAME_WEB_URL+"/page/"+pageCount).timeout(200000).get();
                 Elements articles = document.getElementsByTag("article");
                 List<Map<String, String>> articleMapList = new LinkedList<>();
+                mainController.setStatusText("Extracting game list from page");
                 articles.forEach(article -> {
                     Map<String, String> articleMap = new LinkedHashMap<>();
                     Element aTag = article.getElementsByClass("uk-link-reset").first();
@@ -75,12 +83,21 @@ public class IggGameWebScraper {
     // If so, you need to wait specific amount of time to request that website again.
     // Btw, you can use vpn to request again immediately once you got ip blocking
     public void getSpecificGamePageInfo(Map<String, String> articleMap) throws Exception {
+        //GUI control
+        mainController.setGameTitleText(articleMap.get("articleTitle"));
         Document document = Jsoup.connect(articleMap.get("articleLink")).get();
+        mainController.setStatusText("Extracting genre list");
         getGenreList(document);
+        mainController.setStatusText("Extracting specification list");
         getSpecificationList(document);
+        mainController.setStatusText("Extracting download link list");
         getDownloadLinks(document);
+        mainController.setStatusText("Extracting images list");
         getGamePlayImages(document, articleMap);
+        mainController.setStatusText("Extracting youtube trailer link");
         getYoutubeTrailerLink(articleMap);
+        mainController.setStatusText("Uploading game to cloud server");
+        // uploading game to cloud server codes will be here...
         System.out.println("-".repeat(20));
     }
 

@@ -177,7 +177,7 @@
                               <Font size="10.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="32" wrappingWidth="255.1999397277832">
+                        <Text fx:id="pageIndexText" fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="255.1999397277832">
                            <font>
                               <Font size="10.0" />
                            </font>
@@ -188,20 +188,20 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="331.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="42.0">
                      <children>
                         <Text fill="#bcbcbc" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Title:" wrappingWidth="55.199981689453125">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Witcher 3" wrappingWidth="255.1999397277832">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                        </Text>
                      </children>
                   </HBox>
+                  <Label fx:id="gameTitleLabel" ellipsisString="---" prefHeight="15.0" prefWidth="258.0" text="-" textFill="WHITE">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="19.0" prefWidth="331.0">
@@ -213,7 +213,7 @@
                               <Font size="10.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extracting download links" wrappingWidth="255.1999397277832">
+                        <Text fx:id="statusText" fill="WHITE" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="255.1999397277832">
                            <font>
                               <Font size="10.0" />
                            </font>
