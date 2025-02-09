@@ -41,6 +41,8 @@ public class MainController {
     private CheckBox fbCheckbox;
     @FXML
     private TextField browserField;
+    @FXML
+    private TextField pageIndexField;
 
     public void initialize() {
         ytCredentialPathLabel.setText(System.getenv(YoutubeInitializer.YOUTUBE_CREDENTIAL_ENV));
@@ -60,6 +62,28 @@ public class MainController {
         if(credentialPath != null) {
             YoutubeInitializer.addYoutubeCredentialEnv(credentialPath);
             ytCredentialPathLabel.setText(credentialPath);
+        }
+    }
+
+    @FXML
+    public void keyReleaseOnNoOfBrowser() {
+        String value = browserField.getText();
+        try {
+            int intValue = Integer.parseInt(value);
+            if(intValue<=0 || intValue>10) browserField.clear();
+        } catch (Exception e) {
+            browserField.clear();
+        }
+    }
+
+    @FXML
+    public void keyReleaseOnStartPageIndex() {
+        String value = pageIndexField.getText();
+        try {
+            int intValue = Integer.parseInt(value);
+            if(intValue<=0 || intValue>10000) pageIndexField.clear();
+        } catch (Exception e) {
+            pageIndexField.clear();
         }
     }
 
