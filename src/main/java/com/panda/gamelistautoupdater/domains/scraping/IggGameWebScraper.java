@@ -3,6 +3,7 @@ package com.panda.gamelistautoupdater.domains.scraping;
 import com.panda.gamelistautoupdater.controllers.ControllerManipulator;
 import com.panda.gamelistautoupdater.controllers.MainController;
 import com.panda.gamelistautoupdater.domains.facebook.FacebookHandler;
+import com.panda.gamelistautoupdater.domains.upload.GameUploader;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -92,23 +93,35 @@ public class IggGameWebScraper {
         mainController.setGameTitleText(articleMap.get("articleTitle"));
         Document document = Jsoup.connect(articleMap.get("articleLink")).get();
         mainController.setStatusText("Extracting genre list");
-        getGenreList(document);
+        List<String> genreList = getGenreList(document);
         mainController.setStatusText("Extracting specification list");
-        mainController.markExtractDetailFinish(getSpecificationList(document).size()>0);
+        List<Map<String, String>> specificationList = getSpecificationList(document);
+        mainController.markExtractDetailFinish(specificationList.size()>0);
         mainController.setStatusText("Extracting download link list");
-        mainController.markExtractLinksFinish(getDownloadLinks(document).size()>0);
+        List<String> downloadLinkList = getDownloadLinks(document);
+        mainController.markExtractLinksFinish(downloadLinkList.size()>0);
         mainController.setStatusText("Extracting images list");
-        mainController.markExtractImagesFinish(getGamePlayImages(document, articleMap).size()>0);
+        List<String> gamePlayImagesList = getGamePlayImages(document, articleMap);
+        mainController.markExtractImagesFinish(gamePlayImagesList.size()>0);
+        String youtubeTrailerLink = null;
         if(mainController.ytCheckbox.isSelected()) {
             mainController.setStatusText("Extracting youtube trailer link");
-            mainController.markExtractYoutubeFinish(getYoutubeTrailerLink(articleMap) != null);
+            youtubeTrailerLink = getYoutubeTrailerLink(articleMap);
+            mainController.markExtractYoutubeFinish(youtubeTrailerLink != null);
         }
         mainController.setStatusText("Uploading game to cloud server");
-        mainController.markUploadGameFinish(true);
+        mainController.markUploadGameFinish(GameUploader.upload(genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink));
         // uploading game to cloud server codes will be here...
         mainController.setStatusText("Uploading game info to facebook page");
         if(mainController.fbCheckbox.isSelected()){
-            boolean isUploadSuccess = FacebookHandler.postWithUrl("testing 4", "https://live.staticflickr.com/8566/16456378258_c4a61c07f1_b.jpg");
+            boolean isUploadSuccess = FacebookHandler.postWithUrl("""
+                    🎮New game added to website🎮
+                    Title - %s
+                    website - %s
+                    
+                    #blackskypcgamestore
+                    """.formatted(articleMap.get("articleTitle"), GameUploader.GAME_WEB_ROOT_URL),
+                    gamePlayImagesList.get(0));
             mainController.markPostFacebookFinish(isUploadSuccess);
         }else mainController.markPostFacebookFinish(false);
         //Important
@@ -116,11 +129,12 @@ public class IggGameWebScraper {
         System.out.println("-".repeat(20));
     }
 
-    public void getGenreList(Document document) {
+    public List<String> getGenreList(Document document) {
         List<String> genreList = new LinkedList<>();
         Elements genres = document.getElementsByTag("p").first().getElementsByTag("a");
         genres.forEach(genre -> genreList.add(genre.text()));
         System.out.println("Genre list: "+genreList);
+        return genreList;
     }
 
     public List<Map<String, String>> getSpecificationList(Document document) {

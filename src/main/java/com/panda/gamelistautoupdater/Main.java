@@ -30,11 +30,6 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-        try {
-            YoutubeDataFetcher.fetch("testing");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static void main(String[] args) {
