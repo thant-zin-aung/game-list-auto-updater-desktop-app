@@ -2,6 +2,7 @@ package com.panda.gamelistautoupdater.domains.automations;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.panda.gamelistautoupdater.domains.upload.GameUploader;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -25,7 +26,6 @@ import java.util.List;
 
 public class IggGameAutomateBrowser implements AutoCloseable {
     private final int MAX_BROWSER_COUNT = 10;
-    private final String WEB_ROOT_URL = "https://blackskypcgamestore.x10.mx";
     private final WebDriver driver;
     public IggGameAutomateBrowser() {
         System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
@@ -39,7 +39,8 @@ public class IggGameAutomateBrowser implements AutoCloseable {
 
     public boolean checkGameAlreadyExist(String gameTitle) {
         boolean existFlag = false;
-        String gameExistCheckerUrl = WEB_ROOT_URL+"/admin_panel/exist-game-checker.php?game_title="+gameTitle;
+        String WEB_ROOT_URL = GameUploader.GAME_WEB_ROOT_URL;
+        String gameExistCheckerUrl = WEB_ROOT_URL +"/admin_panel/exist-game-checker.php?game_title="+gameTitle;
         OkHttpClient client = new OkHttpClient();
 
         // Create a request
