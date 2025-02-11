@@ -184,8 +184,9 @@ public class IggGameWebScraper {
         wrappedMegaUpLinks.forEach(wrappedLink -> redirectLinks.add(wrappedLink.attr("href")));
         System.out.println(wrappedMegaUpLinks.size());
 //        redirectLinks.forEach(System.out::println);
-        iggGameAutomateBrowser.getActualGameLinks(redirectLinks, totalBrowser).forEach(System.out::println);
-        return redirectLinks;
+//        iggGameAutomateBrowser.getActualGameLinks(redirectLinks, totalBrowser).forEach(System.out::println);
+//        return redirectLinks;
+        return iggGameAutomateBrowser.getActualGameLinks(redirectLinks, totalBrowser);
     }
 
     public List<String> getGamePlayImages(Document document, Map<String, String> articleMap) throws IOException {

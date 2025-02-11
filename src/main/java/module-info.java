@@ -6,6 +6,7 @@ module com.panda.gamelistautoupdater {
     requires org.seleniumhq.selenium.chrome_driver;
     requires org.seleniumhq.selenium.support;
     requires com.google.gson;
+    requires org.json;
     requires okhttp3;
     requires com.google.api.client.auth;
     requires com.google.api.client.extensions.java6.auth;
