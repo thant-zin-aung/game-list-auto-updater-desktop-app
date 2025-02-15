@@ -92,6 +92,7 @@ public class IggGameWebScraper {
         //GUI control
         mainController.setGameTitleText(articleMap.get("articleTitle"));
         Document document = Jsoup.connect(articleMap.get("articleLink")).get();
+        String gameTitle = articleMap.get("articleTitle");
         mainController.setStatusText("Extracting genre list");
         List<String> genreList = getGenreList(document);
         mainController.setStatusText("Extracting specification list");
@@ -110,7 +111,7 @@ public class IggGameWebScraper {
             mainController.markExtractYoutubeFinish(youtubeTrailerLink != null);
         }
         mainController.setStatusText("Uploading game to cloud server");
-        mainController.markUploadGameFinish(GameUploader.upload(genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink));
+        mainController.markUploadGameFinish(GameUploader.upload(gameTitle, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink));
         // uploading game to cloud server codes will be here...
         mainController.setStatusText("Uploading game info to facebook page");
         if(mainController.fbCheckbox.isSelected()){

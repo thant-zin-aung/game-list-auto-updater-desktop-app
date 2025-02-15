@@ -10,11 +10,13 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class GameUploader {
     public static final String GAME_WEB_ROOT_URL = "https://blackskypcgamestore.x10.mx";
 
     public static JSONObject createResponse(
+            String gameTitle,
             List<String> genreList,
             List<Map<String, String>> specificationList,
             List<String> downloadLinkList,
@@ -23,17 +25,19 @@ public class GameUploader {
 
         JSONObject response = new JSONObject();
 
+        response.put("gameTitle", gameTitle);
         response.put("genreList", new JSONArray(genreList));
         response.put("specificationList", new JSONArray(specificationList));
-        response.put("downloadLinkList", new JSONArray(downloadLinkList));
-        response.put("gamePlayImagesList", new JSONArray(gamePlayImagesList));
+        response.put("downloadLinkList", String.join("\n", downloadLinkList));
+        response.put("gamePlayImagesList", String.join("\n", gamePlayImagesList));
         response.put("youtubeTrailerLink", youtubeTrailerLink);
+        response.put("downloadSize", downloadLinkList.size() == 1 ? 3 : downloadLinkList.size()*5);
 
         return response;
     }
 
 
-    public static boolean upload(List<String> genreList, List<Map<String, String>> specificationList, List<String> downloadLinkList, List<String> gamePlayImagesList, String youtubeTrailerLink) {
+    public static boolean upload(String gameTitle, List<String> genreList, List<Map<String, String>> specificationList, List<String> downloadLinkList, List<String> gamePlayImagesList, String youtubeTrailerLink) {
         OkHttpClient client = new OkHttpClient();
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation() // Only serialize fields with @Expose
@@ -43,7 +47,7 @@ public class GameUploader {
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
         // Create request body
-        JSONObject jsonObject = createResponse(genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink);
+        JSONObject jsonObject = createResponse(gameTitle, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink);
         RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
 
         // Build request
