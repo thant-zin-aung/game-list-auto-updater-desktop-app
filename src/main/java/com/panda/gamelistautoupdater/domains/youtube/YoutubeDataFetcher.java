@@ -72,7 +72,7 @@ public class YoutubeDataFetcher {
         request.setQ(searchGameTitle.concat(" PC Game Trailer"));
         System.out.println(searchGameTitle.concat(" PC Game Trailer"));
         request.setType("video");
-        request.setMaxResults(10L);
+        request.setMaxResults(50L);
 
         SearchListResponse response = request.execute();
 
