@@ -31,14 +31,15 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-//        GameUploader.upload(null,null,null,null,null);
-        IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(1);
-        iggGameWebScraper.setStartPageNumber(1);
-        try {
-            iggGameWebScraper.start();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        // test
+//        IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(1);
+//        iggGameWebScraper.setStartPageNumber(1);
+//        try {
+//            iggGameWebScraper.start();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+        // test
     }
 
     public static void main(String[] args) {
