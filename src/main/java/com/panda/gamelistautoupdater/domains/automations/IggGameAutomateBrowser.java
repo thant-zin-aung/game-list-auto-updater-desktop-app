@@ -3,6 +3,7 @@ package com.panda.gamelistautoupdater.domains.automations;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.panda.gamelistautoupdater.domains.upload.GameUploader;
+import com.panda.gamelistautoupdater.util.CommandLine;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -98,6 +99,7 @@ public class IggGameAutomateBrowser implements AutoCloseable {
 
     public List<String> getActualGameLinks(List<String> redirectLinks, int totalBrowser) throws ChromeRelatedException {
         if(totalBrowser > MAX_BROWSER_COUNT ) throw new ChromeRelatedException("Maximum browser per process is 10 and cannot be exceeded!");
+//        CommandLine.i().getResultOfExecution("taskkill /im chrome.exe /f");
         List<String> actualGameDownloadLinks = new LinkedList<>();
         int totalLink = redirectLinks.size();
         totalBrowser = Math.min(totalBrowser, totalLink);

@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Main-Class: com.panda.gamelistautoupdater.Launcher
+Class-Path: opentelemetry-sdk-1.46.0.jar opentelemetry-sdk-logs-1.46.0.j
+ ar commons-logging-1.2.jar selenium-support-4.28.1.jar opentelemetry-ex
+ porter-logging-1.46.0.jar javafx-controls-17.0.2.jar lucene-core-9.7.0.
+ jar javafx-graphics-17.0.2.jar selenium-safari-driver-4.28.1.jar seleni
+ um-edge-driver-4.28.1.jar byte-buddy-1.15.11.jar guava-31.1-jre.jar ope
+ ntelemetry-api-1.46.0.jar annotations-13.0.jar opentelemetry-sdk-metric
+ s-1.46.0.jar commons-text-1.13.0.jar opentelemetry-sdk-extension-autoco
+ nfigure-1.46.0.jar javafx-fxml-17.0.2.jar opentelemetry-api-incubator-1
+ .46.0-alpha.jar opentelemetry-context-1.46.0.jar opencensus-api-0.31.0.
+ jar okio-3.6.0.jar json-20210307.jar javafx-fxml-17.0.2-win.jar grpc-co
+ ntext-1.27.2.jar error_prone_annotations-2.27.0.jar google-oauth-client
+ -1.33.2.jar kotlin-stdlib-jdk7-1.8.21.jar jsoup-1.18.3.jar j2objc-annot
+ ations-1.3.jar selenium-devtools-v131-4.28.1.jar google-http-client-1.4
+ 1.8.jar commons-lang3-3.17.0.jar jackson-core-2.13.4.jar javafx-control
+ s-17.0.2-win.jar selenium-remote-driver-4.28.1.jar opentelemetry-sdk-co
+ mmon-1.46.0.jar opentelemetry-semconv-1.28.0-alpha.jar opentelemetry-sd
+ k-extension-autoconfigure-spi-1.46.0.jar jsr305-3.0.2.jar google-api-cl
+ ient-1.34.1.jar failureaccess-1.0.1.jar google-http-client-jackson2-1.4
+ 2.3.jar selenium-devtools-v132-4.28.1.jar opentelemetry-sdk-trace-1.46.
+ 0.jar kotlin-stdlib-jdk8-1.8.21.jar javafx-base-17.0.2-win.jar kotlin-s
+ tdlib-1.8.21.jar google-oauth-client-java6-1.34.1.jar kotlin-stdlib-com
+ mon-1.9.10.jar commons-codec-1.11.jar google-http-client-gson-1.41.8.ja
+ r listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar seleni
+ um-java-4.28.1.jar selenium-api-4.28.1.jar selenium-os-4.28.1.jar googl
+ e-api-services-youtube-v3-rev222-1.25.0.jar selenium-devtools-v85-4.28.
+ 1.jar auto-service-annotations-1.1.1.jar selenium-http-4.28.1.jar selen
+ ium-manager-4.28.1.jar checker-qual-3.12.0.jar selenium-json-4.28.1.jar
+  commons-exec-1.4.0.jar google-http-client-apache-v2-1.41.8.jar jspecif
+ y-1.0.0.jar selenium-chromium-driver-4.28.1.jar javafx-graphics-17.0.2-
+ win.jar okio-jvm-3.6.0.jar selenium-devtools-v130-4.28.1.jar selenium-c
+ hrome-driver-4.28.1.jar javafx-base-17.0.2.jar google-oauth-client-jett
+ y-1.34.1.jar httpcore-4.4.15.jar selenium-ie-driver-4.28.1.jar httpclie
+ nt-4.5.13.jar opencensus-contrib-http-util-0.31.0.jar okhttp-4.12.0.jar
+  selenium-firefox-driver-4.28.1.jar gson-2.11.0.jar
+

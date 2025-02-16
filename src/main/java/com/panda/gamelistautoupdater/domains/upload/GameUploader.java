@@ -42,7 +42,7 @@ public class GameUploader {
         JSONObject jsonObject = createResponse(gameTitle, developer, publisher, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink);
         RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
         Request request = new Request.Builder()
-                .url("http://localhost/pc_game_store/admin_panel/update-game.php")
+                .url(GAME_WEB_ROOT_URL+"/admin_panel/update-game.php")
                 .post(body)
                 .build();
 

@@ -77,7 +77,6 @@ public class YoutubeDataFetcher {
         SearchListResponse response = request.execute();
 
         List<SearchResult> searchResults = response.getItems();
-        searchResults.forEach(s -> System.out.println(s.getSnippet().getTitle()));
 
         if (searchResults != null) {
             for (SearchResult result : searchResults) {
