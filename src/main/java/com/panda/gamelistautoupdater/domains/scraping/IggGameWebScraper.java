@@ -93,6 +93,8 @@ public class IggGameWebScraper {
         mainController.setGameTitleText(articleMap.get("articleTitle"));
         Document document = Jsoup.connect(articleMap.get("articleLink")).get();
         String gameTitle = articleMap.get("articleTitle");
+        String developer = getDeveloper(document);
+        String publisher = getPublisher(document);
         mainController.setStatusText("Extracting genre list");
         List<String> genreList = getGenreList(document);
         mainController.setStatusText("Extracting specification list");
@@ -104,14 +106,14 @@ public class IggGameWebScraper {
         mainController.setStatusText("Extracting images list");
         List<String> gamePlayImagesList = getGamePlayImages(document, articleMap);
         mainController.markExtractImagesFinish(gamePlayImagesList.size()>0);
-        String youtubeTrailerLink = null;
+        String youtubeTrailerLink = "-";
         if(mainController.ytCheckbox.isSelected()) {
             mainController.setStatusText("Extracting youtube trailer link");
             youtubeTrailerLink = getYoutubeTrailerLink(articleMap);
             mainController.markExtractYoutubeFinish(youtubeTrailerLink != null);
         }
         mainController.setStatusText("Uploading game to cloud server");
-        mainController.markUploadGameFinish(GameUploader.upload(gameTitle, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink));
+        mainController.markUploadGameFinish(GameUploader.upload(gameTitle, developer, publisher, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink));
         // uploading game to cloud server codes will be here...
         mainController.setStatusText("Uploading game info to facebook page");
         if(mainController.fbCheckbox.isSelected()){
@@ -128,6 +130,17 @@ public class IggGameWebScraper {
         //Important
         mainController.initializeUI();
         System.out.println("-".repeat(20));
+    }
+
+    public String getDeveloper(Document document) {
+        Element developer = document.select("p:has(img[alt=\"developer\"])").first();
+        System.out.println("Developer: "+developer.text().split(":")[1].trim());
+        return developer.text().split(":")[1].trim();
+    }
+    public String getPublisher(Document document) {
+        Element publisher = document.select("p:has(img[alt=\"developer\"])").get(1);
+        System.out.println("Publisher: "+publisher.text().split(":")[1].trim());
+        return publisher.text().split(":")[1].trim();
     }
 
     public List<String> getGenreList(Document document) {

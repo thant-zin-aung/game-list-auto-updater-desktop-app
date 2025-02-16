@@ -17,6 +17,8 @@ public class GameUploader {
 
     public static JSONObject createResponse(
             String gameTitle,
+            String developer,
+            String publisher,
             List<String> genreList,
             List<Map<String, String>> specificationList,
             List<String> downloadLinkList,
@@ -26,6 +28,8 @@ public class GameUploader {
         JSONObject response = new JSONObject();
 
         response.put("gameTitle", gameTitle);
+        response.put("developer", developer);
+        response.put("publisher", publisher);
         response.put("genreList", new JSONArray(genreList));
         response.put("specificationList", new JSONArray(specificationList));
         response.put("downloadLinkList", String.join("\n", downloadLinkList));
@@ -37,7 +41,7 @@ public class GameUploader {
     }
 
 
-    public static boolean upload(String gameTitle, List<String> genreList, List<Map<String, String>> specificationList, List<String> downloadLinkList, List<String> gamePlayImagesList, String youtubeTrailerLink) {
+    public static boolean upload(String gameTitle, String developer, String publisher, List<String> genreList, List<Map<String, String>> specificationList, List<String> downloadLinkList, List<String> gamePlayImagesList, String youtubeTrailerLink) {
         OkHttpClient client = new OkHttpClient();
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation() // Only serialize fields with @Expose
@@ -47,7 +51,7 @@ public class GameUploader {
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
 
         // Create request body
-        JSONObject jsonObject = createResponse(gameTitle, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink);
+        JSONObject jsonObject = createResponse(gameTitle, developer, publisher, genreList, specificationList, downloadLinkList, gamePlayImagesList, youtubeTrailerLink);
         RequestBody body = RequestBody.create(jsonObject.toString(), JSON);
 
         // Build request

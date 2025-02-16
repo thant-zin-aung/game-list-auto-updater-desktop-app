@@ -32,6 +32,13 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 //        GameUploader.upload(null,null,null,null,null);
+        IggGameWebScraper iggGameWebScraper = new IggGameWebScraper(1);
+        iggGameWebScraper.setStartPageNumber(1);
+        try {
+            iggGameWebScraper.start();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {
