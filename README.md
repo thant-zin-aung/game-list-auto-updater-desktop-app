@@ -42,5 +42,5 @@ This application is provided for **educational purposes only**. Users are respon
 ---
 
 <div align="center">
-Made with ❤️ by [Your Name]
+Made with ❤️ by Thant Zin Aung
 </div>
